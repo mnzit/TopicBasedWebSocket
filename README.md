@@ -61,3 +61,10 @@ let stompClient = Stomp.over(socket);
 
 > `var socket = new SockJS('/cp');` has /cp which is the endpoint in `registry.addEndpoint("/cp").withSockJS();`
 > Using Stomp `let stompClient = Stomp.over(socket);`
+
+> `stompClient.subscribe('/topic/message', onMessageReceived);` fetchs all the messages that are send to ` @SendTo("/topic/message")`
+
+> Message is sent to controller with `stompClient.send("/app/message", {}, JSON.stringify(response));` which is converted to `/message` and received `@MessageMapping("/message")`. 
+
+> Here `/app` is the prefix we set in configuration `.setApplicationDestinationPrefixes("/app")`.
+
